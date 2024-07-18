@@ -7,17 +7,17 @@ from .models import Game, User
 # Create your views here.
 
 
-def signup(request):
+def signup(request): #회원가입
     if request.method == "POST":
         form = SignupForm(request.POST)
-        if form.is_valid():
+        if form.is_valid():# 이부분 설명 필요
             user = form.save()
-            auth.login(request, user)
+            auth.login(request, user)#atth가 무엇
             return redirect("game:main")
         else:
             return render(request, "signup.html", {"form": form})
-    else:
-        form = SignupForm()
+    else: #get메소드
+        form = SignupForm() #회원가입 폼 전달
         return render(request, "signup.html", {"form": form})
 
 
@@ -30,7 +30,7 @@ def login(request):
         else:
             return render(request, "login.html", {"form": form})
     else:
-        form = AuthenticationForm()
+        form = AuthenticationForm()#장고에서 지원하는 로그인 폼?
         return render(request, "login.html", {"form": form})
 
 
