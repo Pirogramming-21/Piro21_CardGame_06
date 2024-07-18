@@ -13,6 +13,15 @@
 </head>
 
 <body>
+    {% if user.is_authenticated %}
+    <li><a href="{% url 'game:logout' %}">Logout</a></li>
+    {% else %}
+    <li><a href="{% url 'game:login' %}">Login</a></li>
+    <li><a href="{% url 'game:signup' %}">Signup</a></li>
+    {% endif %}
+
+    {% block content %}
+    {% endblock content %}
 </body>
 
 </html>

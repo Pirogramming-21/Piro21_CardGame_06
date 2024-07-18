@@ -5,7 +5,7 @@ from .models import User
 
 
 class SignupForm(UserCreationForm):
-    name = forms.CharField(
+    username = forms.CharField(
         label="아이디", widget=forms.TextInput(attrs={"class": "signup-input"})
     )
     password1 = forms.CharField(

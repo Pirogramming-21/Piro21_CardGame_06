@@ -10,9 +10,9 @@ from .models import Game, User
 def signup(request): #회원가입
     if request.method == "POST":
         form = SignupForm(request.POST)
-        if form.is_valid():# 이부분 설명 필요
-            user = form.save()
-            auth.login(request, user)#atth가 무엇
+        if form.is_valid():
+            form.save()
+            # auth.login(request, user)
             return redirect("game:main")
         else:
             return render(request, "signup.html", {"form": form})
@@ -23,7 +23,7 @@ def signup(request): #회원가입
 
 def login(request):
     if request.method == "POST":
-        form = AuthenticationForm(request, request.POST)
+        form = AuthenticationForm(request, request.POST) 
         if form.is_valid():
             auth.login(request, form.get_user())
             return redirect("game:main")
@@ -32,6 +32,11 @@ def login(request):
     else:
         form = AuthenticationForm()#장고에서 지원하는 로그인 폼?
         return render(request, "login.html", {"form": form})
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect("game:main")
 
 
 def main(request):
