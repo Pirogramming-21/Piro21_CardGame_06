@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="Flex_cc">
+    <form method="POST" action="" id="signup1">
+        {% csrf_token %}
+        {{ form }}
+        <input class="signup1-btn" type="submit" value="회원가입">
+    </form>
+</div>
+
+{% endblock content %}
