@@ -6,14 +6,8 @@ from .models import Game, User
 from django.db.models import Q
 import random
 
-<<<<<<< HEAD
-def signup(request): #회원가입
-=======
 # Create your views here.
-
-
 def signup(request):  # 회원가입
->>>>>>> origin/develop
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
