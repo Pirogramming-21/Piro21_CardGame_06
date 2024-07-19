@@ -36,7 +36,7 @@ def game_list_view(request):
     game_list_name = [
         (game, game.attackerId.username, game.defenderId.username) for game in games
     ]
-    paginator = Paginator(game_list_name, 4)  # 페이지당 4개의 항목
+    paginator = Paginator(game_list_name, 3)  # 페이지당 4개의 항목
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
@@ -258,20 +258,3 @@ def ranking(request):
 def cancel(request, pk):
     Game.objects.get(id=pk).delete()
     return redirect("game:game_list")
-
-
-# list.html 페이지네이션 구현
-# def game_list_view(request):
-#     games = Game.objects.all()
-#     game_list_name = [
-#         (game, game.attackerId.username, game.defenderId.username) for game in games
-#     ]
-#     paginator = Paginator(game_list_name, 4)
-#     page_number = request.GET.get("page")
-#     page_obj = paginator.get_page(page_number)
-
-#     context = {
-#         "page_obj": page_obj,
-#         "user": request.user,
-#     }
-#     return render(request, "list.html", context)
