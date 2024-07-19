@@ -8,6 +8,7 @@ body {
    margin: 0;
    padding: 0;
 }
+
 main {
    height: 100vh;
 }
@@ -23,9 +24,11 @@ main {
    color: #6a4578;
    font-size: 15px;
 }
+
 .name {
    font-weight: bold;
 }
+
 .login_and_signup a {
    text-decoration: none;
    color: #6a4578;
@@ -53,10 +56,17 @@ main {
    top: 40%;
    color: #E2BBE9;
 }
+
 .intro {
    font-weight: bold;
    font-size: 50px;
 }
+
 .login_comment {
    margin: 10px 0;
+}
+
+.card.selected {
+   background-color: rgb(40, 96, 137);
+   /* 선택된 버튼의 배경색 */
 }
