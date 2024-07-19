@@ -1,0 +1,99 @@
+.yty_main-box {
+    background-color: #F8EDE3;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow-y: auto;
+}
+
+h2 {
+    color: #071952;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #C8DFF1;
+}
+
+.yty_btn {
+    background-color: #071952;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+    text-decoration: none;
+}
+
+.yty_btn:hover {
+    background-color: #122050;
+}
+
+.yty_btn.selected {
+    background-color: #4a3154;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+#yty_card-selection,
+#yty_opponent-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#yty_opponent-selection h3 {
+    color: #071952;
+}
+
+#yty_opponent-buttons select {
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    margin-left: 10px;
+    color: #071952;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+#yty_game-result {
+    margin-bottom: 15px;
+}
+
+.card {
+    display: flex;
+    background-color: #071952;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 10px;
+    color: #C8DFF1;
+    font-size: 20px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    border: none;
+}
+
+.card.selected {
+    background-color: #122050;
+    transform: translateY(-10px);
+}

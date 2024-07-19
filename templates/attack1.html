@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form action="{% url 'game:start' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="yty_main-box">
+        <h2>공격하기</h2>
+        <div id="yty_card-selection">
+            <!-- 숨겨진 입력 필드 추가 -->
+            <input type="hidden" name="search_card" id="searchCardInput">
+            {% for card in available_cards %}
+            <button type="button" class="card" data-value="{{ card }}" onclick="selectCard(this, '{{ card }}')">
+                <span class="card-number">{{ card }}</span>
+            </button>
+            {% endfor %}
+        </div>
+        <div id="yty_opponent-selection">
+            <h3>상대방 선택:</h3>
+            <div id="yty_opponent-buttons">
+                <select name="search_opponent">
+                    <option value="">유저 선택</option>
+                    {% for opponent in opponents %}
+                    <option value="{{ opponent.id }}">{{ opponent.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="yty_btn" id="yty_attack-btn">공격하기</button>
+    </div>
+</form>
+
+<script>
+    function selectCard(button, cardValue) {
+        // 숨겨진 입력 필드에 선택된 카드 값을 설정
+        document.getElementById('searchCardInput').value = cardValue;
+
+        // 모든 카드 버튼에서 'selected' 클래스를 제거
+        var buttons = document.getElementsByClassName('card');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('selected');
+        }
+
+        // 클릭된 버튼에 'selected' 클래스 추가
+        button.classList.add('selected');
+    }
+</script>
+{% endblock %}

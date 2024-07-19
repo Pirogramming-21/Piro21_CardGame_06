@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <main>
+        <h2>회원가입</h2>
+        <form method="POST" action="" id="signup1">
+            <div class="form-group">
+                {% csrf_token %}
+                {{ form }}
+                <input class="yty_btn" type="submit" value="회원가입">
+            </div>
+        </form>
+    </main>
+</div>
+{% endblock content %}

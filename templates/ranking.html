@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>main</title>
+{% endblock %}
+
+{% load static %}
+
+{% block content%}
+
+<body>
+    <div class="psa_container">
+        <main class="psa_main">
+            <h2 class="psa_main_title">Piro 명예의 전당</h2>
+            <div class="psa_ranking">
+                {% for user in users %}
+                <div class="psa_rank_item psa_rank_{{ forloop.counter }}">
+                    <div class="psa_rank_info">
+                        <span class="psa_rank_name">{{ user }}</span>
+                        <span class="psa_rank_score">{{ user.score }}</span>
+                    </div>
+                    <div class="psa_rank_position">{{ forloop.counter }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="psa_btn">
+                <a href="{% url 'game:game_list' %}">전적 목록</a>
+            </button>
+        </main>
+    </div>
+</body>
+{% endblock content%}
