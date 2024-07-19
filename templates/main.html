@@ -5,15 +5,18 @@
 {% endblock %}
 
 {% block content %}
-{% if logged_in %}
-<div class="login_comment">{{user.name}}님이 로그인 중</div>
-<div class="main_btn">
-    <button class="btn">Start</button>
-    {%comment%}
-    <button class="btn" onclick="location.href='{% %}'">List</button>
-    {%endcomment%}
+<div class="main_container">
+   <div class="intro">🤯 Piro Card Game 🤯</div>
+   {% if user.is_authenticate %}
+   <div class="login_comment">{{user.name}}님이 로그인 중</div>
+   <div class="main_btn">
+      <button class="btn">Start</button>
+      {%comment%}
+      <button class="btn" onclick="location.href='{% %}'">List</button>
+      {%endcomment%}
+   </div>
+   {% else %}
+   <button class="btn">Start</button>
+   {% endif %}
 </div>
-{% else %}
-<button class="btn">Start</button>
-{% endif %}
 {% endblock %}
