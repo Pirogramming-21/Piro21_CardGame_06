@@ -1,58 +1,9 @@
-<!DOCTYPE html>
-<html lang="ko">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pirogrammers Card Game</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
-
+{% block content %}
 <body>
-    <!-- <div class="psa_container">
-        <main class="psa_main">
-            <h2 class="psa_main_title">History List</h2>
-            <div id="currentPlayer">현재 플레이어: user1</div>
-            <div class="psa_game_list">
-                <div class="psa_game_item" id="game_1">
-                    <div class="psa_game_info">
-                        1 - user1 VS user2
-                        <form action="#" method="post">
-                            <button type="submit" class="psa_btn_cancel">게임 취소</button>
-                        </form>
-                        <div class="psa_game_result">결과: 진행중</div>
-                    </div>
-                    <button class="psa_btn_info" onclick="getGameInfo(1)">게임정보</button>
-                </div>
-                <div class="history-item">
-                    <div class="history-info">5 - user1 VS user2</div>
-                    <p>결과:🥹🥹 패배 🥹🥹</p>
-                    <button class="game-info-btn">게임정보</button>
-                </div>
-                <div class="history-item">
-                    <div class="history-info">4 - user1 VS user3</div>
-                    <p>결과:🥹🥹 패배 🥹🥹</p>
-                    <button class="game-info-btn">게임정보</button>
-                </div>
-                <div class="history-item">
-                    <div class="history-info">3 - user1 VS user2</div>
-                    <p>결과:🥹🥹 패배 🥹🥹</p>
-                    <button class="game-info-btn">게임정보</button>
-                </div>
-                <div class="history-item">
-                    <div class="history-info">2 - user1 VS user3</div>
-                    <span>진행중...</span>
-                    <button class="cancel-progress-btn">게임 취소</button>
-                    <button class="game-info-btn">게임정보</button>
-                </div>
-                <div class="history-item">
-                    <div class="history-info">1 - user1 VS user2</div>
-                    <button class="counter-attack">CounterAttack</button>
-                    <button class="game-info-btn">게임정보</button>
-                </div>
-            </div>
-        </main>
-    </div> -->
+    </div>
     <div class="psa_container">
         <div>{{ user.username }}</div>
         <hr />
@@ -96,5 +47,4 @@
         }
     </script>
 </body>
-
-</html>
+{% endblock %}
