@@ -6,27 +6,24 @@ from .models import Game, User
 from django.db.models import Q
 import random
 
-# 페이지네이션을 위한 부분
+#페이지네이션을 위한 부분
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
-
 def game_list_view(request):
     games = Game.objects.filter(
-        Q(attackerId=request.user.id) | Q(defenderId=request.user.id)
-    ).order_by("-id")
-    game_list_name = [
-        (game, game.attackerId.username, game.defenderId.username) for game in games
-    ]
-    paginator = Paginator(game_list_name, 4)
-    page_number = request.GET.get("page")
+            Q(attackerId=request.user.id) | Q(defenderId=request.user.id)
+        ).order_by("-id")
+    game_list_name = [(game, game.attackerId.username, game.defenderId.username) for game in games]
+    paginator = Paginator(game_list_name, 3)
+    page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     context = {
-        "page_obj": page_obj,
-        "user": request.user,
+        'page_obj': page_obj,
+        'user': request.user,
     }
-    return render(request, "list.html", context)
+    return render(request, 'list.html', context)
 
 
 def signup(request):  # 회원가입
@@ -233,20 +230,3 @@ def ranking(request):
 def cancel(request, pk):
     Game.objects.get(id=pk).delete()
     return redirect("game:game_list")
-
-
-# list.html 페이지네이션 구현
-# def game_list_view(request):
-#     games = Game.objects.all()
-#     game_list_name = [
-#         (game, game.attackerId.username, game.defenderId.username) for game in games
-#     ]
-#     paginator = Paginator(game_list_name, 4)
-#     page_number = request.GET.get("page")
-#     page_obj = paginator.get_page(page_number)
-
-#     context = {
-#         "page_obj": page_obj,
-#         "user": request.user,
-#     }
-#     return render(request, "list.html", context)
