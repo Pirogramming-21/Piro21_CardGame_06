@@ -137,10 +137,17 @@ def counter(request, pk):
 
 def gameInfo(request, pk):
     game = Game.objects.get(id=pk)  # 반격할 게임 정보 가져옴
-    attacker = User.objects.get(id=game.attackerId.id)
-    defender = User.objects.get(id=game.defenderId.id)
-    user = request.user
-    context = {"game": game, "attacker": attacker, "defender": defender, "user": user, "game_rule":game.rule[game.rule_value]}
+    if game.status == 1:
+        attacker = User.objects.get(id=game.attackerId.id)
+        defender = User.objects.get(id=game.defenderId.id)
+        user = request.user
+        context = {"game": game, "attacker": attacker, "defender": defender, "user": user, "game_rule":game.rule[game.rule_value]}
+    else:
+        attacker = User.objects.get(id=game.attackerId.id)
+        defender = User.objects.get(id=game.defenderId.id)
+        user = request.user
+        context = {"game": game, "attacker": attacker, "defender": defender, "user": user}
+    
     return render(request, "gameInfo.html", context)
 
 def ranking(request):

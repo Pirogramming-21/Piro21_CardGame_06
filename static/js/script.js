@@ -8,14 +8,20 @@ function generateCardOptions() {
     if (cardSelection) {
         const cards = cardSelection.querySelectorAll('.yty_btn');
         cards.forEach(card => {
-            card.addEventListener('click', () => selectCard(card.dataset.card));
+            card.addEventListener('click', () => {
+                console.log('Card clicked:', card.dataset.card);
+                selectCard(card.dataset.card);
+            });
         });
+    } else {
+        console.error('Card selection element not found');
     }
 }
 
 // 카드 선택
 function selectCard(num) {
     selectedCard = num;
+    console.log('Selected card:', selectedCard); // 디버깅을 위한 로그 추가
     const buttons = document.querySelectorAll('#yty_card-selection .yty_btn');
     buttons.forEach(button => {
         button.classList.remove('selected');
@@ -39,6 +45,7 @@ function selectOpponent(opponentId) {
 
 // 공격
 function attack() {
+    console.log('Attack function called. Selected card:', selectedCard);
     if (!selectedCard) {
         alert('카드를 선택해주세요.');
         return;
@@ -76,6 +83,7 @@ function attack() {
 
 // 반격 처리
 function counterAttack() {
+    console.log('Counter attack function called. Selected card:', selectedCard);
     if (!selectedCard) {
         alert('카드를 선택해주세요.');
         return;
