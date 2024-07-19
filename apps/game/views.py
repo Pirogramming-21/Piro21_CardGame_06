@@ -4,20 +4,6 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
 from .models import Game, User
 
-<<<<<<< HEAD
-def signup(request):
-    return render(request, 'signup.html')
-
-
-def ranking(request):
-    return render(request,'ranking.html')
-
-def list(request):
-    return render(request,'list.html')
-=======
-# Create your views here.
-
-
 def signup(request): #회원가입
     if request.method == "POST":
         form = SignupForm(request.POST)
@@ -52,4 +38,3 @@ def logout(request):
 
 def main(request):
     return render(request, "main.html")
->>>>>>> origin/develop
