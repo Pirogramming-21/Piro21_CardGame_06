@@ -14,6 +14,8 @@
     {%endcomment%}
 </div>
 {% else %}
-<button class="btn">Start</button>
+<button class="btn">
+    <a href="{% url 'game:start' %}">Start</a>
+</button>
 {% endif %}
 {% endblock %}

@@ -3,7 +3,7 @@ from apps.game.forms import SignupForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
 from .models import Game, User
-
+import random
 # Create your views here.
 
 
@@ -41,3 +41,76 @@ def logout(request):
 
 def main(request):
     return render(request, "main.html")
+
+def start_attack(request):
+    user = request.user #로그인한 유저
+    if request.method == "GET":
+        opponents = User.objects.exclude(id=user.id) # 로그인한 유저 제외 모든 유저
+        available_cards = []
+        num = 5
+        while num > 0:
+            number = random.randint(1, 10)
+            if number not in available_cards:
+                available_cards.append(number)
+                num-=1
+            else:
+                continue
+        available_cards.sort() 
+        context = { "opponents":opponents, "available_cards": available_cards}
+        return render(request, "attack1.html", context)
+    if request.method == "POST":
+        Game.objects.create(
+            status = 0, #게임 진행중
+            attackerId = user, 
+            attackerCard = request.POST['search_card'],
+            defenderId = User.objects.get(id=request.POST["search_opponent"]),
+            defenderCard = 0, #게임 진행중이라 아직 선택 X
+            winner = 0
+        )
+        return redirect("game:main")
+
+def counter(request, pk):
+    game = Game.objects.get(id=pk) #반격할 게임 정보 가져옴
+    if request.method == 'GET':
+        available_cards = random.sample(range(1,10),5)
+        context = {"available_cards": available_cards.sort()}
+        return render(request, "attack2.html", context)
+    if request.method == "POST":
+        game.defenderCard = request.POST['card'] # 반격자가 낸 카드
+        game.status = 1 #게임 상태: 게임 종료
+        num = random.randint(0,1)
+        if num == 0: #작을 때 이김
+            if game.attackerCard > game.defenderCard: #공격자가 더 크면
+                game.winner = game.defenderId # 승리자는 반격자
+                game.attackerId.score-=game.attackerCard
+                game.defenderId.score+=game.defenderCard
+            else: # 반격자가 더 크면
+                game.winner = game.attackerId # 승리자는 공격자
+                game.attackerId.score+=game.attackerCard
+                game.defenderId.score-=game.defenderCard
+        if num == 1: #클 때 이김
+            if game.attackerCard > game.defenderCard: # 공격자가 더 크면
+                game.winner = game.attackerId # 승리자는 공격자
+                game.attackerId.score+=game.attackerCard
+                game.defenderId.score-=game.defenderCard
+            else: # 반격자가 더 크면
+                game.winner = game.defenderId # 승리자는 반격자
+                game.attackerId.score-=game.attackerCard
+                game.defenderId.score+=game.defenderCard
+        game.save() # 게임정보 저장
+        game.attackerId.save() # 공격자 점수 정보 저장
+        game.defenderId.save() # 반격자 점수 정보 저장
+        return redirect("game:gameInfo") # 게임 결과 화면으로 이동
+
+def gameInfo(request, pk):
+    game = Game.objects.get(id=pk) #반격할 게임 정보 가져옴
+    attacker=User.objects.get(id=game.attackerId)
+    defender=User.objects.get(id=game.defenderId)
+    user = request.user
+    context = {
+        "game": game,
+        "attacker":attacker,
+        "defender":defender,
+        "user":user
+    }
+    return render(request, "gameInfo.html", context)

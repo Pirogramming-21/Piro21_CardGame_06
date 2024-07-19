@@ -8,4 +8,8 @@ urlpatterns = [
     path("login/", login, name="login"),
     path("logout/", logout, name="logout"),
     path("", main, name="main"),
+    path("start", start_attack, name="start"),
+    path("counter/<int:pk>", counter, name="counter"),
+    path("counter/<int:pk>", counter, name="counter"),
+    path("gameInfo/<int:pk>", gameInfo, name="gameInfo"),
 ]

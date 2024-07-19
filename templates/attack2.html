@@ -2,13 +2,15 @@
 {% load static %}
 
 {% block content %}
-<div class="yty_main-box">
-    <h2>반격하기</h2>
-    <div id="yty_card-selection">
-        {% for card in available_cards %}
-            <button class="yty_btn yty_card" data-card="{{ card }}">{{ card }}</button>
-        {% endfor %}
+<form action="{% url 'game:counter' game.pk %}" method="POST" enctype="multipart/form-data">
+    <div class="yty_main-box">
+        <h2>반격하기</h2>
+        <div id="yty_card-selection">
+            {% for card in available_cards %}
+                <button class="yty_btn yty_card" data-card="{{ card }}">{{ card }}</button>
+            {% endfor %}
+        </div>
+        <button class="yty_btn" id="yty_counter-attack-btn">반격하기</button>
     </div>
-    <button class="yty_btn" id="yty_counter-attack-btn">반격하기</button>
-</div>
+</form>
 {% endblock %}

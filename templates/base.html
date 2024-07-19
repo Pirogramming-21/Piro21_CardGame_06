@@ -21,7 +21,7 @@
          <div class="name">Pirogrammer Card Game</div>
          <div class="login_and_signup">
             {% if user.is_authenticated %}
-            <a href="">게임하기</a>
+            <a href="{% url 'game:start' %}">게임하기</a>
             <a href="">랭킹보기</a>
             <a href="{% url 'game:logout' %}">로그아웃</a>
             {% else %}
