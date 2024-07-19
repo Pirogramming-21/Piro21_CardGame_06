@@ -1,0 +1,175 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #5A639C;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #5a3b5c;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #5A639C;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+main {
+    background-color: #E2BBE9;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
+    margin-top: 20px;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #6a4578;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #6a4578;
+}
+
+.form-group input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+button {
+    background-color: #6a4578;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #563a63;
+}
+
+
+.psa_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.psa_main {
+    background-color: #fcddcc;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
+}
+
+.psa_main_title {
+    margin-top: 0;
+    font-size: 24px;
+    color: #6a4578;
+    font-weight: bold;
+}
+
+/*ranking.css*/
+.psa_ranking {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    height: 200px;
+}
+
+.psa_rank_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f1a165;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 80px;
+    margin: 0 10px;
+    position: relative;
+}
+
+.psa_rank_1 {
+    height: 100%;
+}
+
+.psa_rank_2 {
+    height: 70%;
+}
+
+.psa_rank_3 {
+    height: 50%;
+}
+
+.psa_rank_position {
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 10px;
+}
+
+.psa_rank_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+}
+
+.psa_rank_name {
+    font-size: 18px;
+}
+
+.psa_rank_score {
+    font-size: 16px;
+}
+
+.psa_btn {
+    background-color: #6a4578;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.psa_btn:hover {
+    background-color: #563a63;
+}
