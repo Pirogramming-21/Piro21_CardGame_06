@@ -13,8 +13,8 @@ class User(AbstractUser):
 class Game(models.Model):
     status = models.IntegerField("상태")
     rule = [
-        "숫자가 더 작은 사람이 대결에서 이깁니다",
-        "숫자가 더 큰 사람이 대결에서 이깁니다",
+        "숫자가 더 작은 사람이 대결에서 이깁니다!",
+        "숫자가 더 큰 사람이 대결에서 이깁니다!",
     ]
     attackerId = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="attacker"
