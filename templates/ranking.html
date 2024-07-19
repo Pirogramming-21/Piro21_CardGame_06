@@ -1,26 +1,36 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content%}
-    <body>
-        <div class="psa_container">
-            <main class="psa_main">
-                <h2 class="psa_main_title">Piro 명예의 전당</h2>
-                <div class="psa_ranking">
-                    {% for user in users %} {# 주석 : {{ forloop.counter }}를 사용하여 순위표시함 /대신 view에서 users 변수에 orderby로 3위까지 가져오자 #}
-                    <div class="psa_rank_item psa_rank_{{ forloop.counter }}">
-                        <div class="psa_rank_info">
-                            <span class="psa_rank_name">{{ user }}</span>
-                            <span class="psa_rank_score">{{ user.score }}</span>
-                        </div>
-                        <div class="psa_rank_position">{{ forloop.counter }}</div>
+{% block content %}
+<body>
+    <div class="psa_container">
+        <main class="psa_main">
+            <h2 class="psa_main_title">Piro 명예의 전당</h2>
+            <div class="psa_ranking">
+                {% for user in users %}
+                <div class="psa_rank_item psa_rank_{{ forloop.counter }}">
+                    <div class="psa_rank_info">
+                        <span class="psa_rank_name">{{ user }}</span>
+                        <span class="psa_rank_score">{{ user.score }}</span>
                     </div>
-                    {% endfor %}
+                    <div class="psa_rank_position">{{ forloop.counter }}</div>
+                    <div class="psa_rank_bar_container">
+                        <div class="psa_rank_bar" data-score="{{ user.score }}"></div>
+                    </div>
                 </div>
-                <button class="psa_btn">전적 목록</button>
-            </main>
-        </div>
-    </body>
-{% endblock content%}
+                {% endfor %}
+            </div>
+            <button class="psa_btn">전적 목록</button>
+        </main>
+    </div>
 
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const bars = document.querySelectorAll('.psa_rank_bar');
+            bars.forEach(bar => {
+                const score = bar.getAttribute('data-score');
+                // 점수를 비율로 변환 (예: 100점을 기준으로)
+                const widthPercentage = Math.min(score / 100 * 100, 100); // 최대 100%
+                bar.style.width = widthPercentage + '%';
+            });
+        });
+    </script>
+</body>
+{% endblock %}

@@ -110,7 +110,7 @@ def counter(request, pk):
         num = random.randint(0, 1)
         if num == 0:  # 작을 때 이김
             game.rule_value = 0
-            game.ru
+            game.rule
             if game.attackerCard > game.defenderCard:  # 공격자가 더 크면
                 game.winner = int(game.defenderId.id)  # 승리자는 반격자
                 game.attackerId.score -= game.attackerCard
@@ -142,3 +142,8 @@ def gameInfo(request, pk):
     user = request.user
     context = {"game": game, "attacker": attacker, "defender": defender, "user": user, "game_rule":game.rule[game.rule_value]}
     return render(request, "gameInfo.html", context)
+
+def ranking(request):
+    users = User.objects.all().order_by('-score')[:3]
+    context = {"users":users}
+    return render(request, "ranking.html", context)
