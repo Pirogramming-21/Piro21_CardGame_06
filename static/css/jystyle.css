@@ -9,11 +9,13 @@
    color: #6a4578;
    font-size: 15px;
 }
+
 .name a {
    font-weight: bold;
    text-decoration: none;
    color: #6a4578;
 }
+
 .login_and_signup a {
    text-decoration: none;
    color: #6a4578;
@@ -38,6 +40,7 @@ section {
    justify-content: center;
    align-items: center;
 }
+
 /** main **/
 .main_container {
    display: flex;
@@ -45,23 +48,78 @@ section {
    align-items: center;
    color: #E2BBE9;
 }
+
 .intro {
    font-weight: bold;
    font-size: 50px;
    margin-bottom: 10px;
 }
+
 .login_comment {
    margin: 10px 0;
 }
 
-.btn {
-   background-color: #E2BBE9;
+.main_btn_container {
+   display: flex;
+   gap: 10px;
+}
+
+.main_btn {
    border: none;
    border-radius: 20px;
    padding: 10px 20px;
-   font-weight: bold;
-   color: #6a4578;
+   background-color: #E2BBE9;
 }
+
+.main_btn a {
+   color: #6a4578;
+   text-decoration: none;
+   font-weight: bold;
+}
+
+.main_btn:hover {
+   cursor: pointer;
+}
+
+/** gameInfo **/
+.main-box {
+   background-color: #E2BBE9;
+   border-radius: 10px;
+   padding: 30px;
+   text-align: center;
+   font-size: 15px;
+   font-weight: bold;
+}
+
+.info_gamers p {
+   margin-top: 0;
+   padding-bottom: 5px;
+   font-size: 20px;
+   border-bottom: 1px solid #6a4578;
+}
+
+.info_status,
+.info_cards {
+   margin-bottom: 10px;
+}
+
+.btn {
+   background-color: #6a4578;
+   border: none;
+   border-radius: 20px;
+   padding: 10px 20px;
+}
+
+.btn a {
+   text-decoration: none;
+   color: #E2BBE9;
+}
+
 .btn:hover {
    cursor: pointer;
+}
+
+.card.selected {
+   background-color: rgb(40, 96, 137);
+   /* 선택된 버튼의 배경색 */
 }
