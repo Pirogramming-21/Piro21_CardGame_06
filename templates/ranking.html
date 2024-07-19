@@ -6,7 +6,8 @@
 
 {% load static %}
 
-{% block content %}
+{% block content%}
+
 <body>
     <div class="psa_container">
         <main class="psa_main">
@@ -22,9 +23,10 @@
                 </div>
                 {% endfor %}
             </div>
-            <button class="psa_btn"><a href="{% url 'game:game_list' %}">전적 목록</a></button>
+            <button class="psa_btn">
+                <a href="{% url 'game:game_list' %}">전적 목록</a>
+            </button>
         </main>
     </div>
 </body>
-{% endblock content %}
-
+{% endblock content%}
