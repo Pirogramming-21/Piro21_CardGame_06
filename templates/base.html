@@ -4,6 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/jystyle.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/sastyle.css' %}">
+  <script type="text/javascript" src="{% static 'js/jystyle.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
   {% block head %}
 
   {% endblock %}
@@ -16,10 +20,10 @@
             {% if logged_in %}
                <a href="">게임하기</a>
                <a href="">랭킹보기</a>
-               <a href="">로그아웃</a>
+               <a href="{% url 'game:logout' %}">로그아웃</a>
             {% else %}
-               <a href="">로그인</a>
-               <a href="">회원가입</a>
+               <a href="{% url 'game:login' %}">로그인</a>
+               <a href="{% url 'game:signup' %}">회원가입</a>
             {% endif %}
          </div>
       </div>
