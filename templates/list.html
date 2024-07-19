@@ -8,7 +8,7 @@
         {% for game, attacker_name, defender_name in page_obj %}
         <div class="history-item">
             <div class="history-info">
-                <span>{{ forloop.revcounter }}</span> - {{ attacker_name }} VS {{ defender_name }}
+                <span>{{ game.reverse_index }}</span> - {{ attacker_name }} VS {{ defender_name }}
             </div>
             {% if attacker_name == user.username and not game.status %}
             <div class="progress-container">
