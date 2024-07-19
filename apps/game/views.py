@@ -4,9 +4,6 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
 from .models import Game, User
 
-# Create your views here.
-
-
 def signup(request): #회원가입
     if request.method == "POST":
         form = SignupForm(request.POST)

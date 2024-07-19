@@ -2,51 +2,52 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>게임 리스트</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pirogrammers Card Game</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div class="psa_container">
-        <main class="psa_main">
-            <h2 class="psa_main_title">History List</h2>
-            <div id="currentPlayer">현재 플레이어: user1</div>
-            <div class="psa_game_list">
-                <div class="psa_game_item" id="game_1">
-                    <div class="psa_game_info">
-                        1 - user1 VS user2
-                        <form action="#" method="post">
-                            <button type="submit" class="psa_btn_cancel">게임 취소</button>
-                        </form>
-                        <div class="psa_game_result">결과: 진행중</div>
-                    </div>
-                    <button class="psa_btn_info" onclick="getGameInfo(1)">게임정보</button>
+    <div class="container">
+        <main>
+            <h2>History List</h2>
+            <p class="current-player">현재 플레이어 : user1</p>
+            <div class="history-list">
+                <div class="history-item">
+                    <div class="history-info">6 - user4 VS user1</div>
+                    <button class="counter-attack">CounterAttack</button>
+                    <button class="game-info-btn">게임정보</button>
                 </div>
-                <div class="psa_game_item" id="game_2">
-                    <div class="psa_game_info">
-                        2 - user3 VS user1
-                        <form action="#" method="post">
-                            <button type="submit" class="psa_btn_counter">반격</button>
-                        </form>
-                        <div class="psa_game_result">결과: CounterAttack</div>
-                    </div>
-                    <button class="psa_btn_info" onclick="getGameInfo(2)">게임정보</button>
+                <div class="history-item">
+                    <div class="history-info">5 - user1 VS user2</div>
+                    <p>결과:🥹🥹 패배 🥹🥹</p>
+                    <button class="game-info-btn">게임정보</button>
                 </div>
-                <div class="psa_game_item" id="game_3">
-                    <div class="psa_game_info">
-                        3 - user2 VS user3
-                        <div class="psa_game_result">결과: 승리</div>
-                    </div>
-                    <button class="psa_btn_info" onclick="getGameInfo(3)">게임정보</button>
+                <div class="history-item">
+                    <div class="history-info">4 - user1 VS user3</div>
+                    <p>결과:🥹🥹 패배 🥹🥹</p>
+                    <button class="game-info-btn">게임정보</button>
+                </div>
+                <div class="history-item">
+                    <div class="history-info">3 - user1 VS user2</div>
+                    <p>결과:🥹🥹 패배 🥹🥹</p>
+                    <button class="game-info-btn">게임정보</button>
+                </div>
+                <div class="history-item">
+                    <div class="history-info">2 - user1 VS user3</div>
+                    <span>진행중...</span>
+                    <button class="cancel-progress-btn">게임 취소</button>
+                    <button class="game-info-btn">게임정보</button>
+                </div>
+                <div class="history-item">
+                    <div class="history-info">1 - user1 VS user2</div>
+                    <button class="counter-attack">CounterAttack</button>
+                    <button class="game-info-btn">게임정보</button>
                 </div>
             </div>
         </main>
     </div>
-
-    <script>
-    function getGameInfo(gameId) {
-        alert("게임 정보: " + gameId);
-    }
-    </script>
 </body>
 </html>
+
+
 
