@@ -1,84 +1,4 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="ko">
-
-<head>
-    <meta charset="UTF-8">
-    <title>게임 리스트</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
-{% block content %}
-
-<body>
-    <!-- <div class="psa_container">
-        <main class="psa_main">
-            <h2 class="psa_main_title">History List</h2>
-            <div id="currentPlayer">현재 플레이어: user1</div>
-            <div class="psa_game_list">
-                <div class="psa_game_item" id="game_1">
-                    <div class="psa_game_info">
-                        1 - user1 VS user2
-                        <form action="#" method="post">
-                            <button type="submit" class="psa_btn_cancel">게임 취소</button>
-                        </form>
-                        <div class="psa_game_result">결과: 진행중</div>
-                    </div>
-                    <button class="psa_btn_info" onclick="getGameInfo(1)">게임정보</button>
-                </div>
-                <div class="psa_game_item" id="game_2">
-                    <div class="psa_game_info">
-                        2 - user3 VS user1
-                        <form action="#" method="post">
-                            <button type="submit" class="psa_btn_counter">반격</button>
-                        </form>
-                        <div class="psa_game_result">결과: CounterAttack</div>
-                    </div>
-                    <button class="psa_btn_info" onclick="getGameInfo(2)">게임정보</button>
-                </div>
-                <div class="psa_game_item" id="game_3">
-                    <div class="psa_game_info">
-                        3 - user2 VS user3
-                        <div class="psa_game_result">결과: 승리</div>
-                    </div>
-                    <button class="psa_btn_info" onclick="getGameInfo(3)">게임정보</button>
-                </div>
-            </div>
-        </main>
-    </div> -->
-    <div class="psa_container">
-        <div>{{ user.username }}</div>
-        <hr />
-        <div class="flex_box">
-            {% for game, attacker_name, defender_name in game_list_name %}
-            <article>
-                <div>
-                    <span>{{game.id}}</span> - {{game.attackerId}} VS {{game.defenderId}}
-                </div>
-                <div>
-                    <!-- 공격자가 로그인한 사람이고, status가 진행중(0) 이라면 -->
-                    {% if attacker_name == user.username and not game.status %}
-                    <div>진행중</div>
-                    <button class="btn"><a href="{% url 'game:cancel' game.pk%}">게임취소</a></button>
-                    {% elif defender_name == user.username and not game.status %}
-                    <div><a href="{% url 'game:counter' game.id %}">CounterAttack</a></div>
-                    <!-- status가 게임 종료(1) 이라면 -->
-                    {% else %}
-                    <div>결과
-                        {% if game.winner == user.id %}
-                        승리
-                        {% elif game.winner == -1 %}
-                        무승부
-                        {% else %}
-                        패배
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                    <a href="{% url 'game:gameInfo' game.id %}">게임정보</a>
-                </div>
-            </article>
-            {% endfor %}
-=======
 {% load static %}
 
 {% block content %}
@@ -115,7 +35,6 @@
             <button class="game-info-btn">
                 <a href="{% url 'game:gameInfo' game.id %}">게임정보</a>
             </button>
->>>>>>> a191347ac8f06860860ef95835a4946daa454502
         </div>
         {% endfor %}
     </div>
@@ -126,17 +45,6 @@
             <a href="?page={{ page_obj.previous_page_number }}">이전</a>
             {% endif %}
 
-<<<<<<< HEAD
-    <script>
-        function getGameInfo(gameId) {
-            alert("게임 정보: " + gameId);
-        }
-    </script>
-</body>
-{% endblock %}
-
-</html>
-=======
             <span class="current">
                 페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
             </span>
@@ -149,4 +57,3 @@
 
 </div>
 {% endblock %}
->>>>>>> a191347ac8f06860860ef95835a4946daa454502

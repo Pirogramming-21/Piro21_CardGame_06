@@ -16,7 +16,7 @@
             <a href="{% url 'account_logout' %}" class="yty_btn">로그아웃</a>
         {% else %}
             <a href="{% provider_login_url 'google' %}" class="yty_btn">구글 로그인</a>
-            <a href="{% url 'account_signup' %}" class="yty_btn">회원가입</a>
+            <a href="{% url 'game:signup' %}" class="yty_btn">회원가입</a>
         {% endif %}
     </div>
 </div>
