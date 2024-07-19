@@ -2,21 +2,30 @@
 {% load static %}
 
 {% block content %}
-<div class="yty_main-box">
-    <h2>공격하기</h2>
-    <div id="yty_card-selection">
-        {% for card in available_cards %}
-            <button class="yty_btn yty_card" data-card="{{ card }}">{{ card }}</button>
-        {% endfor %}
-    </div>
-    <div id="yty_opponent-selection">
-        <h3>상대방 선택:</h3>
-        <div id="yty_opponent-buttons">
-            {% for opponent in opponents %}
-                <button class="yty_btn yty_opponent" data-opponent-id="{{ opponent.id }}">{{ opponent.username }}</button>
-            {% endfor %}
+<form action="{% url 'game:start' %}" method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+    <div class="yty_main-box">
+        <h2>공격하기</h2>
+        <div id="yty_card-selection">
+            <select name="search_card">
+                <option value="">카드 선택</option>
+                {% for card in available_cards %}
+                    <option value="{{card}}">{{card}}</option>
+                {% endfor %}
+            </select>
         </div>
-    </div>
-    <button class="yty_btn" id="yty_attack-btn">공격하기</button>
-</div>
+        <div id="yty_opponent-selection">
+            <h3>상대방 선택:</h3>
+            <div id="yty_opponent-buttons">
+                <select name="search_opponent">
+                    <option value="">유저 선택</option>
+                    {% for opponent in opponents %}
+                        <option value="{{ opponent.id }}">{{ opponent.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+            <button type="submit" class="yty_btn" id="yty_attack-btn">공격하기</button>
+        </div>
+    </form>
 {% endblock %}
