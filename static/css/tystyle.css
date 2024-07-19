@@ -29,7 +29,8 @@ h2 {
     margin-bottom: 20px;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"],
+input[type="password"] {
     width: 80%;
     padding: 10px;
     margin-bottom: 10px;
@@ -60,7 +61,8 @@ input[type="text"], input[type="password"] {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-#yty_card-selection, #yty_opponent-selection {
+#yty_card-selection,
+#yty_opponent-selection {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

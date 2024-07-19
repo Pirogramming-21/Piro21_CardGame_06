@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block content %}
-    <div class="container">
-        <main>
-            <h2>회원가입</h2>
-            <form method="post" action="{% url 'game:signup' %}">
+<div class="container">
+    <main>
+        <h2>회원가입</h2>
+        <!-- <form method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="name">이름:</label>
@@ -16,9 +16,16 @@
                     <input type="password" id="pwd" name="pwd" required>
                 </div>
                 <button type="submit">회원가입</button>
-            </form>
-        </main>
-    </div>
+            </form> -->
+        <form method="POST" action="" id="signup1">
+            <div class="form-group">
+                {% csrf_token %}
+                {{ form }}
+                <input class="signup1-btn" type="submit" value="회원가입">
+            </div>
+        </form>
+    </main>
+</div>
 {% endblock content %}
 
 
