@@ -9,7 +9,9 @@
 <div class="login_comment">{{user.name}}님이 로그인 중</div>
 <div class="main_btn">
     <button class="btn">Start</button>
+    {%comment%}
     <button class="btn" onclick="location.href='{% %}'">List</button>
+    {%endcomment%}
 </div>
 {% else %}
 <button class="btn">Start</button>
