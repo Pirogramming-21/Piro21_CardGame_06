@@ -1,3 +1,11 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>main</title>
+{% endblock %}
+
+{% load static %}
+
 {% block content %}
 <body>
     <div class="psa_container">
@@ -11,26 +19,12 @@
                         <span class="psa_rank_score">{{ user.score }}</span>
                     </div>
                     <div class="psa_rank_position">{{ forloop.counter }}</div>
-                    <div class="psa_rank_bar_container">
-                        <div class="psa_rank_bar" data-score="{{ user.score }}"></div>
-                    </div>
                 </div>
                 {% endfor %}
             </div>
-            <button class="psa_btn">전적 목록</button>
+            <button class="psa_btn"><a href="{% url 'game:game_list' %}">전적 목록</a></button>
         </main>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const bars = document.querySelectorAll('.psa_rank_bar');
-            bars.forEach(bar => {
-                const score = bar.getAttribute('data-score');
-                // 점수를 비율로 변환 (예: 100점을 기준으로)
-                const widthPercentage = Math.min(score / 100 * 100, 100); // 최대 100%
-                bar.style.width = widthPercentage + '%';
-            });
-        });
-    </script>
 </body>
-{% endblock %}
+{% endblock content %}
+
