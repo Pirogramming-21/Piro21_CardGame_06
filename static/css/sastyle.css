@@ -10,6 +10,7 @@ body {
 }
 
 main {
+    width: 500px;
     background-color: #E2BBE9;
     padding: 40px;
     border-radius: 10px;
@@ -26,7 +27,7 @@ h2 {
 
 .form-group {
     margin-bottom: 20px;
-    text-align: left;
+    text-align: center;
 }
 
 .form-group label {
@@ -34,6 +35,8 @@ h2 {
     margin-bottom: 5px;
     font-size: 16px;
     color: #6a4578;
+    text-align: left;
+    margin: 10px 40px;
 }
 
 .form-group input {
@@ -45,9 +48,21 @@ h2 {
     font-size: 16px;
 }
 
+.sa_btn {
+    background-color: #6a4578;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+    text-decoration: none;
+}
 
 .psa_container {
-    padding:30px;
+    padding: 30px;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
@@ -146,7 +161,7 @@ h2 {
     background-color: #563a63;
 }
 
-.psa_btn a{
+.psa_btn a {
     text-decoration: none;
     color: white;
 }
@@ -196,10 +211,12 @@ h2 {
 .counter-attack:hover {
     background-color: #c82333;
 }
+
 .counter-attack a {
     text-decoration: none;
     color: white;
 }
+
 .progress-container {
     display: flex;
     align-items: center;
@@ -221,7 +238,8 @@ h2 {
     cursor: pointer;
     font-size: 12px;
 }
-.cancel-progress-btn a{
+
+.cancel-progress-btn a {
     text-decoration: none;
     color: white;
 }
@@ -239,7 +257,8 @@ h2 {
     border-radius: 5px;
     cursor: pointer;
 }
-.game-info-btn a{
+
+.game-info-btn a {
     text-decoration: none;
     color: white;
 }
@@ -253,7 +272,8 @@ h2 {
 .pagination {
     display: flex;
     justify-content: center;
-    align-items: center; /* 수직 정렬을 위해 추가 */
+    align-items: center;
+    /* 수직 정렬을 위해 추가 */
     margin-top: 20px;
 }
 
@@ -262,7 +282,8 @@ h2 {
     gap: 10px;
 }
 
-.step-links a, .step-links .current {
+.step-links a,
+.step-links .current {
     padding: 8px 16px;
     text-decoration: none;
     border: 1px solid #ddd;
@@ -283,6 +304,6 @@ h2 {
     background-color: #6c757d;
     color: #fff;
     border-color: #6c757d;
-    margin-left: auto; 
-    margin-right: auto; 
+    margin-left: auto;
+    margin-right: auto;
 }

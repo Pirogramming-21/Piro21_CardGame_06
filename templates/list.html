@@ -2,49 +2,58 @@
 {% load static %}
 
 {% block content %}
-
-<body>
-    </div>
-    <div class="psa_container">
-        <div>{{ user.username }}</div>
-        <hr />
-        <div class="flex_box">
-            {% for game, attacker_name, defender_name in game_list_name %}
-            <article>
-                <div>
-                    <span>{{ forloop.revcounter }}</span> - {{game.attackerId}} VS {{game.defenderId}}
-                </div>
-                <div>
-                    <!-- 공격자가 로그인한 사람이고, status가 진행중(0) 이라면 -->
-                    {% if attacker_name == user.username and not game.status %}
-                    <div>진행중</div>
-                    <button class="btn"><a href="{% url 'game:cancel' game.pk%}">게임취소</a></button>
-                    {% elif defender_name == user.username and not game.status %}
-                    <div><a href="{% url 'game:counter' game.id %}">CounterAttack</a></div>
-                    <!-- status가 게임 종료(1) 이라면 -->
-                    {% else %}
-                    <div>결과
-                        {% if game.winner == user.id %}
-                        승리
-                        {% elif game.winner == -1 %}
-                        무승부
-                        {% else %}
-                        패배
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                    <a href="{% url 'game:gameInfo' game.id %}">게임정보</a>
-                </div>
-            </article>
-            {% endfor %}
+<div class="psa_container">
+    <div class="current-player">현재 플레이어: {{ user.username }}</div>
+    <div class="history-list">
+        {% for game, attacker_name, defender_name in page_obj %}
+        <div class="history-item">
+            <div class="history-info">
+                <span>{{ forloop.revcounter }}</span> - {{ attacker_name }} VS {{ defender_name }}
+            </div>
+            {% if attacker_name == user.username and not game.status %}
+            <div class="progress-container">
+                <span class="progress">진행중...</span>
+                <button class="cancel-progress-btn">
+                    <a href="{% url 'game:cancel' game.pk %}">게임취소</a>
+                </button>
+            </div>
+            {% elif defender_name == user.username and not game.status %}
+            <button class="counter-attack">
+                <a href="{% url 'game:counter' game.id %}">CounterAttack</a>
+            </button>
+            {% else %}
+            <div>결과:
+                {% if game.winner == user.id %}
+                🤭🤭 승리 🤭🤭
+                {% elif game.winner == -1 %}
+                🚩🚩 무승부 🚩🚩
+                {% else %}
+                🥹🥹 패배 🥹🥹
+                {% endif %}
+            </div>
+            {% endif %}
+            <button class="game-info-btn">
+                <a href="{% url 'game:gameInfo' game.id %}">게임정보</a>
+            </button>
         </div>
+        {% endfor %}
     </div>
-    <script>
-        function getGameInfo(gameId) {
-            alert("게임 정보: " + gameId);
-        }
-    </script>
-</body>
-{% endblock %}
 
-</html>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">이전</a>
+            {% endif %}
+
+            <span class="current">
+                페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">다음</a>
+            {% endif %}
+        </span>
+    </div>
+
+</div>
+{% endblock %}

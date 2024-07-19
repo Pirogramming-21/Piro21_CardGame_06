@@ -14,4 +14,6 @@ urlpatterns = [
     path("gameInfo/<int:pk>", gameInfo, name="gameInfo"),
     path("ranking/", ranking, name="ranking"),
     path("cancel/<int:pk>", cancel, name="cancel"),
+    # 임의추가
+    path("games/", game_list_view, name="game_list"),
 ]
