@@ -57,7 +57,7 @@
                     {% if attacker_name == user.username and not game.status %}
                     <div>진행중</div>
                     {% elif defender_name == user.username and not game.status %}
-                    <div>반격하기</div>
+                    <div><a href="{% url 'game:counter' game.id %}">반격하기</a></div>
                     <!-- status가 게임 종료(1) 이라면 -->
                     {% else %}
                     <div>결과
