@@ -114,20 +114,24 @@ def counter(request, pk):
                 game.winner = int(game.defenderId.id)  # 승리자는 반격자
                 game.attackerId.score -= game.attackerCard
                 game.defenderId.score += game.defenderCard
-            else:  # 반격자가 더 크면
+            elif game.attackerCard < game.defenderCard:  # 반격자가 더 크면
                 game.winner = int(game.attackerId.id)  # 승리자는 공격자
                 game.attackerId.score += game.attackerCard
                 game.defenderId.score -= game.defenderCard
+            else:
+                game.winner = -1
         if num == 1:  # 클 때 이김
             game.rule_value = 1
             if game.attackerCard > game.defenderCard:  # 공격자가 더 크면
                 game.winner = int(game.attackerId.id)  # 승리자는 공격자
                 game.attackerId.score += game.attackerCard
                 game.defenderId.score -= game.defenderCard
-            else:  # 반격자가 더 크면
+            elif game.attackerCard < game.defenderCard:  # 반격자가 더 크면
                 game.winner = int(game.defenderId.id)  # 승리자는 반격자
                 game.attackerId.score -= game.attackerCard
                 game.defenderId.score += game.defenderCard
+            else:
+                game.winner = -1
         game.save()  # 게임정보 저장
         game.attackerId.save()  # 공격자 점수 정보 저장
         game.defenderId.save()  # 반격자 점수 정보 저장
@@ -135,33 +139,25 @@ def counter(request, pk):
 
 
 def gameInfo(request, pk):
-
     game = Game.objects.get(id=pk)  # 반격할 게임 정보 가져옴
     if game.status == 1:
         attacker = User.objects.get(id=game.attackerId.id)
         defender = User.objects.get(id=game.defenderId.id)
         user = request.user
-        context = {
-            "game": game,
-            "attacker": attacker,
-            "defender": defender,
-            "user": user,
-            "game_rule": game.rule[game.rule_value],
-        }
+        context = {"game": game, "attacker": attacker, "defender": defender, "user": user, "game_rule":game.rule[game.rule_value]}
     else:
         attacker = User.objects.get(id=game.attackerId.id)
         defender = User.objects.get(id=game.defenderId.id)
         user = request.user
-        context = {
-            "game": game,
-            "attacker": attacker,
-            "defender": defender,
-            "user": user,
-        }
+        context = {"game": game, "attacker": attacker, "defender": defender, "user": user}
+    
     return render(request, "gameInfo.html", context)
 
-
 def ranking(request):
-    users = User.objects.all().order_by("-score")[:3]
-    context = {"users": users}
+    users = User.objects.all().order_by('-score')[:3]
+    context = {"users":users}
     return render(request, "ranking.html", context)
+
+def cancel(request, pk):
+    Game.objects.get(id=pk).delete()
+    return redirect("game:game_list")

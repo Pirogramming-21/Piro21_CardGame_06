@@ -17,7 +17,9 @@
                     </div>
                     {% endfor %}
                 </div>
-                <button class="psa_btn">전적 목록</button>
+                <button class="psa_btn">
+                    <a href="{% url 'game:game_list' %}">전적 목록</a>
+                </button>
             </main>
         </div>
     </body>
