@@ -3,14 +3,14 @@
 
 {% block content %}
 <form action="{% url 'game:start' %}" method="POST" enctype="multipart/form-data">
-    {%csrf_token%}
+    {% csrf_token %}
     <div class="yty_main-box">
         <h2>공격하기</h2>
         <div id="yty_card-selection">
             <select name="search_card">
                 <option value="">카드 선택</option>
                 {% for card in available_cards %}
-                    <option value="{{card}}">{{card}}</option>
+                    <option value="{{ card }}">{{ card }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -25,7 +25,9 @@
                 </select>
             </div>
         </div>
-            <button type="submit" class="yty_btn" id="yty_attack-btn">공격하기</button>
-        </div>
-    </form>
+        <button type="submit" class="yty_btn" id="yty_attack-btn">공격하기</button>
+    </div>
+</form>
+<script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
+
