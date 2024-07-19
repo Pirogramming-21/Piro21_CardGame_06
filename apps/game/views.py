@@ -7,8 +7,6 @@ from django.db.models import Q
 import random
 
 # Create your views here.
-
-
 def signup(request):  # 회원가입
     if request.method == "POST":
         form = SignupForm(request.POST)

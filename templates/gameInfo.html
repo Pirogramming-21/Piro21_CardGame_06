@@ -19,13 +19,13 @@
       <p>{{defender}}: {{game.defenderCard}}</p>
    </div>
    <div class="result">
-      <div>결과
+      <div>결과:
          {% if game.winner == user.id %}
-         승리
+         🏆🏆 승리 🏆🏆
          {% elif game.winner == -1 %}
-         무승부
+         🔫🔫 무승부 🔫🔫
          {% else %}
-         패배
+         😭😭 패배 😭😭
          {% endif %}
       </div>
    </div>
@@ -33,13 +33,14 @@
       <p>점수: {{user.score}}</p>
    </div>
    <button class="btn"><a href="{% url 'game:game_list' %}">전적목록</a></button>
-   {% elif game.status == 0 %} <!-- 아직 게임 중일 경우 -->
+   <!-- 아직 게임 중일 경우 -->
+   {% elif game.status == 0 %} 
    <!-- 만약 user가 게임 공격자라면 -->
    {% if game.attackerId.id == user.id %}
    <div class="info_gamers">
       <p>{{attacker}} VS {{defender}}</p>
    </div>
-   <div class="info_status">진행중..</div>
+   <div class="info_status">진행중..😑</div>
    <div class="info_cards">나: {{game.attackerCard}}</div>
    <button class="btn"><a href="{% url 'game:cancel' game.pk%}">게임취소</a></button>
    <button class="btn"><a href="{% url 'game:game_list' %}">전적목록</a></button>

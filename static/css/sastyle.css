@@ -9,27 +9,12 @@ body {
     padding: 0;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #5A639C;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-
 main {
     background-color: #E2BBE9;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 400px;
-    margin-top: 20px;
 }
 
 h2 {
@@ -58,22 +43,6 @@ h2 {
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 16px;
-}
-
-button {
-    background-color: #6a4578;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    width: 100%;
-}
-
-button:hover {
-    background-color: #563a63;
 }
 
 
@@ -172,4 +141,89 @@ button:hover {
 
 .psa_btn:hover {
     background-color: #563a63;
+}
+
+
+/* list_style.css */
+.current-player {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.history-item {
+    width: 500px; /* 고정 너비 추가 */
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.history-info {
+    font-size: 18px;
+}
+
+.counter-attack {
+    width: 150px;
+    height: 40px;
+    border: none;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.counter-attack:hover {
+    background-color: #c82333;
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress {
+    color: #ffc107;
+}
+
+.cancel-progress-btn {
+    display: inline-block;
+    width: 70px;
+    padding: 3px 6px;
+    border: none;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.cancel-progress-btn:hover {
+    background-color: #c82333;
+}
+
+.game-info-btn {
+    width: 100px;
+    height: 40px;
+    border: none;
+    background-color: #6f42c1;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.game-info-btn:hover {
+    background-color: #5a369d;
 }
