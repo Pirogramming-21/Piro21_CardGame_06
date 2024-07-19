@@ -2,17 +2,19 @@
 {% load static %}
 
 {% block content %}
-<form action="{% url 'game:counter' game.pk %}" method="POST" enctype="multipart/form-data">
+<form action="" method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
     <div class="yty_main-box">
         <h2>반격하기</h2>
         <div id="yty_card-selection">
             <select name="search_card">
+                <option value="">카드 선택</option>
                 {% for card in available_cards %}
                 <option value="{{card}}">{{card}}</option>
                 {% endfor %}
             </select>
         </div>
-        <button class="yty_btn" id="yty_counter-attack-btn">반격하기</button>
+        <button type="submit" class="yty_btn" id="yty_counter-attack-btn">반격하기</button>
     </div>
 </form>
 {% endblock %}

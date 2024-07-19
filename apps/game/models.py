@@ -24,4 +24,5 @@ class Game(models.Model):
         User, on_delete=models.CASCADE, related_name="defender"
     )
     defenderCard = models.IntegerField("방어자 카드", default=0)
-    winner = models.IntegerField("승리자", null=True, default = 0)
+    winner = models.IntegerField("승리자", null=True, default=0)
+    rule_value = models.IntegerField("정해진 규칙", null=True)
