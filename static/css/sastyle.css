@@ -60,22 +60,6 @@ h2 {
     font-size: 16px;
 }
 
-button {
-    background-color: #6a4578;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    width: 100%;
-}
-
-button:hover {
-    background-color: #563a63;
-}
-
 
 .psa_container {
     display: flex;
@@ -172,7 +156,6 @@ button:hover {
 
 .psa_btn:hover {
     background-color: #563a63;
-<<<<<<< HEAD:apps/game/static/css/style.css
 }
 
 
@@ -260,6 +243,3 @@ button:hover {
 .game-info-btn:hover {
     background-color: #5a369d;
 }
-=======
-}
->>>>>>> origin/develop:static/css/sastyle.css
