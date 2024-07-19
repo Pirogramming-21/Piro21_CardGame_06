@@ -53,17 +53,52 @@ section {
 .login_comment {
    margin: 10px 0;
 }
-
-.btn {
-   background-color: #E2BBE9;
+.main_btn_container {
+   display: flex;
+   gap: 10px;
+}
+.main_btn {
    border: none;
    border-radius: 20px;
    padding: 10px 20px;
+   background-color: #E2BBE9;
+}
+.main_btn a {
+   color: #6a4578;
+   text-decoration: none;
    font-weight: bold;
+}
+.main_btn:hover {
+   cursor: pointer;
+}
+
+/** gameInfo **/
+.main-box {
+   background-color: #E2BBE9;
+   border-radius: 10px;
+   padding: 30px;
+   text-align: center;
+   font-size: 15px;
+   font-weight: bold;
+}
+.info_gamers p {
+   margin-top: 0;
+   padding-bottom: 5px;
+   font-size: 20px;
+   border-bottom: 1px solid #6a4578;
+}
+.info_status, .info_cards {
+   margin-bottom: 10px;
+}
+.btn {
+   background-color: #6a4578;
+   border: none;
+   border-radius: 20px;
+   padding: 10px 20px;
 }
 .btn a {
    text-decoration: none;
-   color: #6a4578;
+   color: #E2BBE9;
 }
 .btn:hover {
    cursor: pointer;

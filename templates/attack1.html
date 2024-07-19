@@ -7,12 +7,11 @@
     <div class="yty_main-box">
         <h2>공격하기</h2>
         <div id="yty_card-selection">
-            <select name="search_card">
-                <option value="">카드 선택</option>
-                {% for card in available_cards %}
-                    <option value="{{card}}">{{card}}</option>
-                {% endfor %}
-            </select>
+            {% for card in available_cards %}
+            <button class="card" data-value="{{ card }}">
+                <span class="card-number">{{ card }}</span>
+            </button>
+            {% endfor %}
         </div>
         <div id="yty_opponent-selection">
             <h3>상대방 선택:</h3>
@@ -25,6 +24,7 @@
                 </select>
             </div>
         </div>
+            <input type="hidden" name="search_card" id="selected_card" value="">
             <button type="submit" class="yty_btn" id="yty_attack-btn">공격하기</button>
         </div>
     </form>

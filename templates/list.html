@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
 <body>
     </div>
     <div class="psa_container">
@@ -17,30 +18,27 @@
                     <!-- 공격자가 로그인한 사람이고, status가 진행중(0) 이라면 -->
                     {% if attacker_name == user.username and not game.status %}
                     <div>진행중</div>
+                    <button class="btn"><a href="{% url 'game:cancel' game.pk%}">게임취소</a></button>
                     {% elif defender_name == user.username and not game.status %}
-                    <div><a href="{% url 'game:counter' game.id %}">반격하기</a></div>
+                    <div><a href="{% url 'game:counter' game.id %}">CounterAttack</a></div>
                     <!-- status가 게임 종료(1) 이라면 -->
                     {% else %}
                     <div>결과
                         {% if game.winner == user.id %}
                         승리
+                        {% elif game.winner == -1 %}
+                        무승부
                         {% else %}
                         패배
                         {% endif %}
                     </div>
                     {% endif %}
+                    <a href="{% url 'game:gameInfo' game.id %}">게임정보</a>
                 </div>
             </article>
             {% endfor %}
         </div>
-        <div>
-            {%comment%}
-            <a href="{% url 'game:gameinfo' play.id %}">게임정보</a>
-            {%endcomment%}
-        </div>
     </div>
-
-
     <script>
         function getGameInfo(gameId) {
             alert("게임 정보: " + gameId);
@@ -48,3 +46,5 @@
     </script>
 </body>
 {% endblock %}
+
+</html>

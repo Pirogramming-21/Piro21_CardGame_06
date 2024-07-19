@@ -9,20 +9,17 @@
       <div class="intro">🤯 Piro Card Game 🤯</div>
       {% if user.is_authenticated %}
          <div class="login_comment">{{user.username}}님이 로그인 중</div>
-         <div class="main_btn">
-         {% comment %}
-         <button class="btn" onclick="location.href='{% %}'">List</button>
-         <button class="btn">Start</button>
-         {% endcomment %}
-         <button class="btn">
-            <a href="{% url 'game:start' %}">Start</a>
-         </button>
-         <button class="btn">
-            <a href="{% url 'game:game_list' %}">List</a>
-         </button>
+         <div class="main_btn_container">
+            <button class="main_btn">
+               <a href="{% url 'game:start' %}">Start</a>
+            </button>
+            <button class="main_btn">
+               <a href="{% url 'game:game_list' %}">List</a>
+            </button>
+         </div>
       </div>
       {% else %}
-      <button class="btn">
+      <button class="main_btn">
          <a href="{% url 'game:login' %}">Start</a>
       </button>
       {% endif %}
