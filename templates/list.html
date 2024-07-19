@@ -52,7 +52,7 @@
             {% for game, attacker_name, defender_name in game_list_name %}
             <article>
                 <div>
-                    <span>{{game.id}}</span> - {{game.attackerId}} VS {{game.defenderId}}
+                    <span>{{ forloop.revcounter }}</span> - {{game.attackerId}} VS {{game.defenderId}}
                 </div>
                 <div>
                     <!-- 공격자가 로그인한 사람이고, status가 진행중(0) 이라면 -->
