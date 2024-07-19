@@ -25,3 +25,4 @@ class Game(models.Model):
     )
     defenderCard = models.IntegerField("방어자 카드", default=0)
     winner = models.IntegerField("승리자", null=True, default=0)
+    rule_value = models.IntegerField("정해진 규칙", null=True)

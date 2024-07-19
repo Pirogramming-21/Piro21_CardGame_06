@@ -109,6 +109,7 @@ def counter(request, pk):
         game.status = 1  # 게임 상태: 게임 종료
         num = random.randint(0, 1)
         if num == 0:  # 작을 때 이김
+            game.rule_value = 0
             if game.attackerCard > game.defenderCard:  # 공격자가 더 크면
                 game.winner = int(game.defenderId.id)  # 승리자는 반격자
                 game.attackerId.score -= game.attackerCard
@@ -118,6 +119,7 @@ def counter(request, pk):
                 game.attackerId.score += game.attackerCard
                 game.defenderId.score -= game.defenderCard
         if num == 1:  # 클 때 이김
+            game.rule_value = 1
             if game.attackerCard > game.defenderCard:  # 공격자가 더 크면
                 game.winner = int(game.attackerId.id)  # 승리자는 공격자
                 game.attackerId.score += game.attackerCard
@@ -129,13 +131,33 @@ def counter(request, pk):
         game.save()  # 게임정보 저장
         game.attackerId.save()  # 공격자 점수 정보 저장
         game.defenderId.save()  # 반격자 점수 정보 저장
-        return redirect(f"game:gameInfo/{game.id}")  # 게임 결과 화면으로 이동
+        return redirect(f"../gameInfo/{game.id}")  # 게임 결과 화면으로 이동
+    context = {"game": game, "available_cards": available_cards}
+    return render(request, "attack2.html", context=context)
 
 
 def gameInfo(request, pk):
+
     game = Game.objects.get(id=pk)  # 반격할 게임 정보 가져옴
-    attacker = User.objects.get(id=game.attackerId)
-    defender = User.objects.get(id=game.defenderId)
-    user = request.user
-    context = {"game": game, "attacker": attacker, "defender": defender, "user": user}
+    if game.status == 1:
+        attacker = User.objects.get(id=game.attackerId.id)
+        defender = User.objects.get(id=game.defenderId.id)
+        user = request.user
+        context = {
+            "game": game,
+            "attacker": attacker,
+            "defender": defender,
+            "user": user,
+            "game_rule": game.rule[game.rule_value],
+        }
+    else:
+        attacker = User.objects.get(id=game.attackerId.id)
+        defender = User.objects.get(id=game.defenderId.id)
+        user = request.user
+        context = {
+            "game": game,
+            "attacker": attacker,
+            "defender": defender,
+            "user": user,
+        }
     return render(request, "gameInfo.html", context)

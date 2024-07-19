@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -6,6 +8,8 @@
     <title>게임 리스트</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
+{% block content %}
 
 <body>
     <!-- <div class="psa_container">
@@ -57,7 +61,7 @@
                     {% if attacker_name == user.username and not game.status %}
                     <div>진행중</div>
                     {% elif defender_name == user.username and not game.status %}
-                    <div><a href="{% url 'game:counter' game.id %}">반격하기</a></div>
+                    <div><a href="{% url 'game:counter' game.id %}">CounterAttack</a></div>
                     <!-- status가 게임 종료(1) 이라면 -->
                     {% else %}
                     <div>결과
@@ -68,14 +72,10 @@
                         {% endif %}
                     </div>
                     {% endif %}
+                    <a href="{% url 'game:gameInfo' game.id %}">게임정보</a>
                 </div>
             </article>
             {% endfor %}
-        </div>
-        <div>
-            {%comment%}
-            <a href="{% url 'game:gameinfo' play.id %}">게임정보</a>
-            {%endcomment%}
         </div>
     </div>
 
@@ -86,5 +86,6 @@
         }
     </script>
 </body>
+{% endblock %}
 
 </html>

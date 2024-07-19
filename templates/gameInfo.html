@@ -1,48 +1,50 @@
 {% extends 'base.html' %}
 
 {% block head %}
-  <title>gameInfo</title>
+<title>gameInfo</title>
 {% endblock %}
-   <div class="main-box">
-      <!-- 만약 이미 끝난 게임이라면 -->
-      {% if game.status == 1 %}
-         <div class="info_gamers">
-            <p>{{game.id}} - {{game.attackerId.name}} VS {{game.defenderId.name}}</p>
-         </div>
-         <div class="info_rule">
-            <p>{{game.rule}}</p>
-         </div>
-         <div class="info_cards">
-            <p>{{attacker.name}}: {{game.attackerCard}}</p>
-            <p>{{defender.name}}: {{game.defenderCard}}</p>
-         </div>
-         <div class="result">
-            <!-- JS -->
-         </div>
-         <div class="info_user_score">
-            <p>점수: {{user.score}}</p>
-         </div>
-         <button class="btn"><a href="{% url 'game:list' %}">전적목록</a></button>
-      {% elif game.status == 0 %}  <!-- 아직 게임 중일 경우 -->
-      <!-- 만약 user가 게임 공격자라면 -->
-         {% if game.attackerId == user.id %}
-            <div class="info_gamers">
-               <p>{{game.id}} - {{game.attackerId.name}} VS {{game.defenderId.name}}</p>
-            </div>
-            <div class="info_status">진행중..</div>
-            <div class="info_cards">나: {{game.attackerCard}}</div>
-            <button class="btn"><a href="{% url 'game:cancel' game.pk%}">게임취소</a></button>
-            <button class="btn"><a href="{% url 'game:list' %}">전적목록</a></button>
-         <!-- 만약 user가 게임 방어자라면 -->
-         {% elif game.defenderID == user.id %}
-            <div class="info_gamers">
-               <p>{{game.id}} - {{game.attackerId.name}} VS {{game.defenderId.name}}</p>
-            </div>
-            <button class="btn"><a href="{% url 'game:counter' game.pk %}">대응하기</a></button>
-            <button class="btn"><a href="{% url 'game:list' %}">전적목록</a></button>
-         {% endif %}
-      {% endif %}
-   </div>
+
 {% block content %}
-   
+<div class="main-box">
+   <!-- 만약 이미 끝난 게임이라면 -->
+   {% if game.status == 1 %}
+   <div class="info_gamers">
+      <p>{{game.id}} - {{attacker}} VS {{defender}}</p>
+   </div>
+   <div class="info_rule">
+      <p>{{game_rule}}</p>
+   </div>
+   <div class="info_cards">
+      <p>{{attacker}}: {{game.attackerCard}}</p>
+      <p>{{defender}}: {{game.defenderCard}}</p>
+   </div>
+   <div class="result">
+      <!-- JS -->
+   </div>
+   <div class="info_user_score">
+      <p>점수: {{user.score}}</p>
+   </div>
+   <button class="btn"><a href="{% url 'game:game_list' %}">전적목록</a></button>
+   {% elif game.status == 0 %} <!-- 아직 게임 중일 경우 -->
+   <!-- 만약 user가 게임 공격자라면 -->
+   {% if game.attackerId.id == user.id %}
+   <div class="info_gamers">
+      <p>{{game.id}} - {{attacker}} VS {{defender}}</p>
+   </div>
+   <div class="info_status">진행중..</div>
+   <div class="info_cards">나: {{game.attackerCard}}</div>
+   {% comment %}
+   <button class="btn"><a href="{% url 'game:cancel' game.pk%}">게임취소</a></button>
+   {% endcomment %}
+   <button class="btn"><a href="{% url 'game:game_list' %}">전적목록</a></button>
+   <!-- 만약 user가 게임 방어자라면 -->
+   {% elif game.defenderId.id == user.id %}
+   <div class="info_gamers">
+      <p>{{game.id}} - {{attacker}} VS {{defender}}</p>
+   </div>
+   <button class="btn"><a href="{% url 'game:counter' game.pk %}">대응하기</a></button>
+   <button class="btn"><a href="{% url 'game:game_list' %}">전적목록</a></button>
+   {% endif %}
+   {% endif %}
+</div>
 {% endblock %}
