@@ -34,7 +34,7 @@
    </div>
    <button class="btn"><a href="{% url 'game:game_list' %}">전적목록</a></button>
    <!-- 아직 게임 중일 경우 -->
-   {% elif game.status == 0 %} 
+   {% elif game.status == 0 %}
    <!-- 만약 user가 게임 공격자라면 -->
    {% if game.attackerId.id == user.id %}
    <div class="info_gamers">
@@ -47,9 +47,9 @@
    <!-- 만약 user가 게임 방어자라면 -->
    {% elif game.defenderId.id == user.id %}
    <div class="info_gamers">
-      <p>{{game.id}} - {{attacker}} VS {{defender}}</p>
+      <p>{{attacker}} VS {{defender}}</p>
    </div>
-   <button class="btn"><a href="{% url 'game:counter' game.pk %}">대응하기</a></button>
+   <button class="counterattack_btn"><a href="{% url 'game:counter' game.pk %}">대응하기</a></button>
    <button class="btn"><a href="{% url 'game:game_list' %}">전적목록</a></button>
    {% endif %}
    {% endif %}

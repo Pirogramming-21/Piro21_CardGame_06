@@ -1,37 +1,43 @@
 /** nav_bar **/
 .nav_bar {
-   background-color: #E2BBE9;
+   background-color: transparent;
    display: flex;
    align-items: center;
    justify-content: space-between;
    height: 30px;
    padding: 20px 40px;
-   color: #6a4578;
-   font-size: 15px;
+   font-size: 20px;
 }
 
 .name a {
    font-weight: bold;
    text-decoration: none;
-   color: #6a4578;
+   color: #071952;
 }
 
 .login_and_signup a {
    text-decoration: none;
-   color: #6a4578;
+   color: #071952;
    margin-left: 10px;
+   font-weight: bold;
+}
+
+.name a:hover,
+.login_and_signup a:hover {
+   color: #243e96;
 }
 
 /** footer **/
 .group_num {
-   background-color: #E2BBE9;
+   background-color: transparent;
    height: 30px;
    padding: 20px 40px;
    font-weight: bold;
-   font-size: 15px;
+   font-size: 20px;
    display: flex;
    justify-content: flex-end;
    align-items: center;
+   color: #F8EDE3;
 }
 
 section {
@@ -46,7 +52,7 @@ section {
    display: flex;
    flex-direction: column;
    align-items: center;
-   color: #E2BBE9;
+   color: #071952;
 }
 
 .intro {
@@ -68,11 +74,11 @@ section {
    border: none;
    border-radius: 20px;
    padding: 10px 20px;
-   background-color: #E2BBE9;
+   background-color: #5755FE;
 }
 
 .main_btn a {
-   color: #6a4578;
+   color: white;
    text-decoration: none;
    font-weight: bold;
 }
@@ -83,19 +89,19 @@ section {
 
 /** gameInfo **/
 .main-box {
-   background-color: #E2BBE9;
-   border-radius: 10px;
-   padding: 30px;
+   background-color: #F8EDE3;
+   border-radius: 20px;
+   padding: 40px 70px;
    text-align: center;
-   font-size: 15px;
+   font-size: 20px;
    font-weight: bold;
 }
 
 .info_gamers p {
    margin-top: 0;
-   padding-bottom: 5px;
+   padding-bottom: 15px;
    font-size: 20px;
-   border-bottom: 1px solid #6a4578;
+   border-bottom: 1px solid #071952;
 }
 
 .info_status,
@@ -103,20 +109,33 @@ section {
    margin-bottom: 10px;
 }
 
-.btn {
-   background-color: #6a4578;
+.btn,
+.counterattack_btn {
+   background-color: #071952;
    border: none;
    border-radius: 20px;
    padding: 10px 20px;
+   transition: background-color 0.3s;
 }
 
-.btn a {
+.counterattack_btn {
+   background-color: #dc3545;
+}
+
+.btn a,
+.counterattack_btn a {
    text-decoration: none;
-   color: #E2BBE9;
+   color: white;
 }
 
 .btn:hover {
    cursor: pointer;
+   background-color: #243e96;
+}
+
+.counterattack_btn:hover {
+   cursor: pointer;
+   background-color: #c82333;
 }
 
 .card.selected {
