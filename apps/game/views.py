@@ -76,7 +76,7 @@ def counter(request, pk):
         context = {"available_cards": available_cards.sort()}
         return render(request, "attack2.html", context)
     if request.method == "POST":
-        game.defenderCard = request.POST['card'] # 반격자가 낸 카드
+        game.defenderCard = request.POST['search_card'] # 반격자가 낸 카드
         game.status = 1 #게임 상태: 게임 종료
         num = random.randint(0,1)
         if num == 0: #작을 때 이김
