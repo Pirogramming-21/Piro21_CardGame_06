@@ -78,15 +78,30 @@ def start_attack(request):
         context = {"opponents": opponents, "available_cards": available_cards}
         return render(request, "attack1.html", context)
     if request.method == "POST":
-        Game.objects.create(
-            status=0,  # 게임 진행중
-            attackerId=user,
-            attackerCard=request.POST["search_card"],
-            defenderId=User.objects.get(id=request.POST["search_opponent"]),
-            defenderCard=0,  # 게임 진행중이라 아직 선택 X
-            winner=0,
-        )
-        return redirect("game:game_list")
+        try:
+            Game.objects.create(
+                status=0,  # 게임 진행중
+                attackerId=user,
+                attackerCard=request.POST["search_card"],
+                defenderId=User.objects.get(id=request.POST["search_opponent"]),
+                defenderCard=0,  # 게임 진행중이라 아직 선택 X
+                winner=0,
+            )
+            return redirect("game:game_list")
+        except ValueError:
+            opponents = User.objects.exclude(id=user.id)  # 로그인한 유저 제외 모든 유저
+            available_cards = []
+            num = 5
+            while num > 0:
+                number = random.randint(1, 10)
+                if number not in available_cards:
+                    available_cards.append(number)
+                    num -= 1
+                else:
+                    continue
+            available_cards.sort()
+            context = {"opponents": opponents, "available_cards": available_cards}
+            return render(request, "attack1.html", context)
 
 
 def counter(request, pk):
@@ -114,20 +129,24 @@ def counter(request, pk):
                 game.winner = int(game.defenderId.id)  # 승리자는 반격자
                 game.attackerId.score -= game.attackerCard
                 game.defenderId.score += game.defenderCard
-            else:  # 반격자가 더 크면
+            elif game.attackerCard < game.defenderCard:  # 반격자가 더 크면
                 game.winner = int(game.attackerId.id)  # 승리자는 공격자
                 game.attackerId.score += game.attackerCard
                 game.defenderId.score -= game.defenderCard
+            else:  # 무승부일 떄
+                game.winner = -1
         if num == 1:  # 클 때 이김
             game.rule_value = 1
             if game.attackerCard > game.defenderCard:  # 공격자가 더 크면
                 game.winner = int(game.attackerId.id)  # 승리자는 공격자
                 game.attackerId.score += game.attackerCard
                 game.defenderId.score -= game.defenderCard
-            else:  # 반격자가 더 크면
+            elif game.attackerCard < game.defenderCard:  # 반격자가 더 크면
                 game.winner = int(game.defenderId.id)  # 승리자는 반격자
                 game.attackerId.score -= game.attackerCard
                 game.defenderId.score += game.defenderCard
+            else:  # 무승부일 때
+                game.winner = -1
         game.save()  # 게임정보 저장
         game.attackerId.save()  # 공격자 점수 정보 저장
         game.defenderId.save()  # 반격자 점수 정보 저장
@@ -165,3 +184,8 @@ def ranking(request):
     users = User.objects.all().order_by("-score")[:3]
     context = {"users": users}
     return render(request, "ranking.html", context)
+
+
+def cancel(request, pk):
+    Game.objects.get(id=pk).delete()
+    return redirect("game:game_list")

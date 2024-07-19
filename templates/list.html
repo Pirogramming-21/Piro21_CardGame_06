@@ -58,6 +58,7 @@
                     <!-- 공격자가 로그인한 사람이고, status가 진행중(0) 이라면 -->
                     {% if attacker_name == user.username and not game.status %}
                     <div>진행중</div>
+                    <button class="btn"><a href="{% url 'game:cancel' game.pk%}">게임취소</a></button>
                     {% elif defender_name == user.username and not game.status %}
                     <div><a href="{% url 'game:counter' game.id %}">CounterAttack</a></div>
                     <!-- status가 게임 종료(1) 이라면 -->
@@ -65,6 +66,8 @@
                     <div>결과
                         {% if game.winner == user.id %}
                         승리
+                        {% elif game.winner == -1 %}
+                        무승부
                         {% else %}
                         패배
                         {% endif %}
