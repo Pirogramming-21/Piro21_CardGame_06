@@ -30,28 +30,31 @@ from django.contrib.auth.decorators import login_required
 
 
 def game_list_view(request):
-    games = Game.objects.filter(
-        Q(attackerId=request.user.id) | Q(defenderId=request.user.id)
-    ).order_by("-id")
-    game_list_name = [
-        (game, game.attackerId.username, game.defenderId.username) for game in games
-    ]
-    paginator = Paginator(game_list_name, 3)  # 페이지당 4개의 항목
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
+    if request.user.is_authenticated:
+        games = Game.objects.filter(
+            Q(attackerId=request.user.id) | Q(defenderId=request.user.id)
+        ).order_by("-id")
+        game_list_name = [
+            (game, game.attackerId.username, game.defenderId.username) for game in games
+        ]
+        paginator = Paginator(game_list_name, 3)  # 페이지당 4개의 항목
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
 
-    total_count = paginator.count
-    start_index = total_count - (page_obj.number - 1) * paginator.per_page
+        total_count = paginator.count
+        start_index = total_count - (page_obj.number - 1) * paginator.per_page
 
-    # 각 항목에 대한 역순 인덱스 계산
-    for idx, (game, attacker_name, defender_name) in enumerate(page_obj, start=1):
-        game.reverse_index = start_index - idx + 1
+        # 각 항목에 대한 역순 인덱스 계산
+        for idx, (game, attacker_name, defender_name) in enumerate(page_obj, start=1):
+            game.reverse_index = start_index - idx + 1
 
-    context = {
-        "page_obj": page_obj,
-        "user": request.user,
-    }
-    return render(request, "list.html", context)
+        context = {
+            "page_obj": page_obj,
+            "user": request.user,
+        }
+        return render(request, "list.html", context)
+    else:
+        return redirect("game:login")
 
 
 def signup(request):  # 회원가입
