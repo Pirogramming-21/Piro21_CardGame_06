@@ -2,23 +2,33 @@
 {% load static %}
 
 {% block content%}
-    <body>
-        <div class="psa_container">
-            <main class="psa_main">
-                <h2 class="psa_main_title">Piro 명예의 전당</h2>
-                <div class="psa_ranking">
-                    {% for user in users %} {# 주석 : {{ forloop.counter }}를 사용하여 순위표시함 /대신 view에서 users 변수에 orderby로 3위까지 가져오자 #}
-                    <div class="psa_rank_item psa_rank_{{ forloop.counter }}">
-                        <div class="psa_rank_info">
-                            <span class="psa_rank_name">{{ user }}</span>
-                            <span class="psa_rank_score">{{ user.score }}</span>
-                        </div>
-                        <div class="psa_rank_position">{{ forloop.counter }}</div>
+
+<body>
+    <div class="psa_container">
+        <main class="psa_main">
+            <h2 class="psa_main_title">Piro 명예의 전당</h2>
+            <div class="psa_ranking">
+                {% for user in users %}
+                <div class="psa_rank_item psa_rank_{{ forloop.counter }}">
+                    <div class="psa_rank_info">
+                        <span class="psa_rank_name">{{ user }}</span>
+                        <span class="psa_rank_score">{{ user.score }}</span>
                     </div>
-                    {% endfor %}
+                    <div class="psa_rank_position">{{ forloop.counter }}</div>
                 </div>
+<<<<<<< HEAD
                 <button class="psa_btn"><a href="{% url 'game:game_list' %}">전적 목록</a></button>
             </main>
         </div>
     </body>
+=======
+                {% endfor %}
+            </div>
+            <button class="psa_btn">
+                <a href="{% url 'game:game_list' %}">전적 목록</a>
+            </button>
+        </main>
+    </div>
+</body>
+>>>>>>> 82b4335266046fdd28170ed433315a7ce605332f
 {% endblock content%}

@@ -13,4 +13,5 @@ urlpatterns = [
     path("counter/<int:pk>", counter, name="counter"),
     path("gameInfo/<int:pk>", gameInfo, name="gameInfo"),
     path("ranking", ranking, name="ranking"),
+    path("cancel/<int:pk>", cancel, name="cancel"),
 ]
