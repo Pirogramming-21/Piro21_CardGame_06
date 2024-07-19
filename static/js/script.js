@@ -2,26 +2,10 @@
 let selectedCard = null;
 let selectedOpponentId = null;
 
-// 카드 선택 옵션 생성
-function generateCardOptions() {
-    const cardSelection = document.getElementById('yty_card-selection');
-    if (cardSelection) {
-        const cards = cardSelection.querySelectorAll('.yty_btn');
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                console.log('Card clicked:', card.dataset.card);
-                selectCard(card.dataset.card);
-            });
-        });
-    } else {
-        console.error('Card selection element not found');
-    }
-}
-
 // 카드 선택
 function selectCard(num) {
     selectedCard = num;
-    console.log('Selected card:', selectedCard); // 디버깅을 위한 로그 추가
+    console.log('Selected card:', selectedCard);
     const buttons = document.querySelectorAll('#yty_card-selection .yty_btn');
     buttons.forEach(button => {
         button.classList.remove('selected');
@@ -34,6 +18,7 @@ function selectCard(num) {
 // 상대방 선택
 function selectOpponent(opponentId) {
     selectedOpponentId = opponentId;
+    console.log('Selected opponent:', selectedOpponentId);
     const buttons = document.querySelectorAll('#yty_opponent-buttons .yty_opponent');
     buttons.forEach(button => {
         button.classList.remove('selected');
@@ -45,7 +30,7 @@ function selectOpponent(opponentId) {
 
 // 공격
 function attack() {
-    console.log('Attack function called. Selected card:', selectedCard);
+    console.log('Attack function called. Selected card:', selectedCard, 'Selected opponent:', selectedOpponentId);
     if (!selectedCard) {
         alert('카드를 선택해주세요.');
         return;
@@ -132,7 +117,19 @@ function getCookie(name) {
 
 // 페이지 로드 시 실행
 document.addEventListener('DOMContentLoaded', function() {
-    generateCardOptions();
+    // 카드 선택 이벤트
+    document.querySelectorAll('#yty_card-selection .yty_btn').forEach(button => {
+        button.addEventListener('click', function() {
+            selectCard(this.dataset.card);
+        });
+    });
+
+    // 상대방 선택 이벤트
+    document.querySelectorAll('#yty_opponent-buttons .yty_opponent').forEach(button => {
+        button.addEventListener('click', function() {
+            selectOpponent(this.dataset.opponentId);
+        });
+    });
 
     // 공격하기 버튼 클릭 이벤트
     const attackBtn = document.getElementById('yty_attack-btn');
@@ -145,11 +142,4 @@ document.addEventListener('DOMContentLoaded', function() {
     if (counterAttackBtn) {
         counterAttackBtn.addEventListener('click', counterAttack);
     }
-
-    // 상대방 선택 버튼 클릭 이벤트
-    document.querySelectorAll('#yty_opponent-buttons .yty_opponent').forEach(button => {
-        button.addEventListener('click', function () {
-            selectOpponent(this.dataset.opponentId);
-        });
-    });
 });

@@ -17,8 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from social_login import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("apps.game.urls")),
+    path('social-login/', views.social_login, name='social_login'),
+    path('account/', include('allauth.urls')),
 ]
