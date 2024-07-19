@@ -1,11 +1,14 @@
-{% extends 'main.html' %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="Flex_cc">
-    <form method="POST" action="" id="login1">
+<div class="yty_main-box">
+    <h2>로그인</h2>
+    <form id="yty_login-form" method="post" action="{% url 'login' %}">
         {% csrf_token %}
-        {{ form }}
-        <button class="login1-btn">Login</button>
+        <input type="text" id="yty_username" name="username" placeholder="아이디" required><br><br>
+        <input type="password" id="yty_password" name="password" placeholder="비밀번호" required><br><br>
+        <button type="submit" class="yty_btn">로그인</button>
     </form>
 </div>
-{% endblock content %}
+{% endblock %}
