@@ -1,91 +1,59 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<html lang="ko">
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>게임 리스트</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
 {% block content %}
-<body>
-    <!-- <div class="psa_container">
-        <main class="psa_main">
-            <h2 class="psa_main_title">History List</h2>
-            <div id="currentPlayer">현재 플레이어: user1</div>
-            <div class="psa_game_list">
-                <div class="psa_game_item" id="game_1">
-                    <div class="psa_game_info">
-                        1 - user1 VS user2
-                        <form action="#" method="post">
-                            <button type="submit" class="psa_btn_cancel">게임 취소</button>
-                        </form>
-                        <div class="psa_game_result">결과: 진행중</div>
-                    </div>
-                    <button class="psa_btn_info" onclick="getGameInfo(1)">게임정보</button>
-                </div>
-                <div class="psa_game_item" id="game_2">
-                    <div class="psa_game_info">
-                        2 - user3 VS user1
-                        <form action="#" method="post">
-                            <button type="submit" class="psa_btn_counter">반격</button>
-                        </form>
-                        <div class="psa_game_result">결과: CounterAttack</div>
-                    </div>
-                    <button class="psa_btn_info" onclick="getGameInfo(2)">게임정보</button>
-                </div>
-                <div class="psa_game_item" id="game_3">
-                    <div class="psa_game_info">
-                        3 - user2 VS user3
-                        <div class="psa_game_result">결과: 승리</div>
-                    </div>
-                    <button class="psa_btn_info" onclick="getGameInfo(3)">게임정보</button>
-                </div>
+<div class="psa_container">
+    <div class="current-player">현재 플레이어: {{ user.username }}</div>
+    <div class="history-list">
+        {% for game, attacker_name, defender_name in page_obj %}
+        <div class="history-item">
+            <div class="history-info">
+                <span>{{ forloop.revcounter }}</span> - {{ attacker_name }} VS {{ defender_name }}
             </div>
-        </main>
-    </div> -->
-    <div class="psa_container">
-        <div>{{ user.username }}</div>
-        <hr />
-        <div class="flex_box">
-            {% for game, attacker_name, defender_name in game_list_name %}
-            <article>
-                <div>
-                    <span>{{game.id}}</span> - {{game.attackerId}} VS {{game.defenderId}}
-                </div>
-                <div>
-                    <!-- 공격자가 로그인한 사람이고, status가 진행중(0) 이라면 -->
-                    {% if attacker_name == user.username and not game.status %}
-                    <div>진행중</div>
-                    {% elif defender_name == user.username and not game.status %}
-                    <div><a href="{% url 'game:counter' game.id %}">반격하기</a></div>
-                    <!-- status가 게임 종료(1) 이라면 -->
-                    {% else %}
-                    <div>결과
-                        {% if game.winner == user.id %}
-                        승리
-                        {% else %}
-                        패배
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                </div>
-            </article>
-            {% endfor %}
+            {% if attacker_name == user.username and not game.status %}
+            <div class="progress-container">
+                <span class="progress">진행중...</span>
+                <button class="cancel-progress-btn">
+                    <a href="{% url 'game:cancel' game.pk %}">게임취소</a>
+                </button>
+            </div>
+            {% elif defender_name == user.username and not game.status %}
+            <button class="counter-attack">
+                <a href="{% url 'game:counter' game.id %}">CounterAttack</a>
+            </button>
+            {% else %}
+            <div>결과:
+                {% if game.winner == user.id %}
+                🤭🤭 승리 🤭🤭
+                {% elif game.winner == -1 %}
+                🚩🚩 무승부 🚩🚩
+                {% else %}
+                🥹🥹 패배 🥹🥹
+                {% endif %}
+            </div>
+            {% endif %}
+            <button class="game-info-btn">
+                <a href="{% url 'game:gameInfo' game.id %}">게임정보</a>
+            </button>
         </div>
-        <div>
-            {%comment%}
-            <a href="{% url 'game:gameinfo' game.id %}">게임정보</a>
-            {%endcomment%}
-        </div>
+        {% endfor %}
     </div>
 
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">이전</a>
+            {% endif %}
 
-    <script>
-        function getGameInfo(gameId) {
-            alert("게임 정보: " + gameId);
-        }
-    </script>
-</body>
+            <span class="current">
+                페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">다음</a>
+            {% endif %}
+        </span>
+    </div>
+
+</div>
 {% endblock %}
-</html>

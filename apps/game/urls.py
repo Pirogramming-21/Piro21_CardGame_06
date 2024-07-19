@@ -9,8 +9,11 @@ urlpatterns = [
     path("logout/", logout, name="logout"),
     path("", main, name="main"),
     path("game_list/", game_list, name="game_list"),
-    path("start", start_attack, name="start"),
+    path("start/", start_attack, name="start"),
     path("counter/<int:pk>", counter, name="counter"),
     path("gameInfo/<int:pk>", gameInfo, name="gameInfo"),
-    path("ranking", ranking, name="ranking"),
+    path("ranking/", ranking, name="ranking"),
+    path("cancel/<int:pk>", cancel, name="cancel"),
+    # 임의추가
+    path("games/", game_list_view, name="game_list"),
 ]
