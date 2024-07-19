@@ -1,21 +1,29 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pirogrammers Card Game</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
+{% block content %}
 <body>
-    <div class="container">
-        <main>
-            <h2>History List</h2>
-            <p class="current-player">현재 플레이어 : user1</p>
-            <div class="history-list">
-                <div class="history-item">
-                    <div class="history-info">6 - user4 VS user1</div>
-                    <button class="counter-attack">CounterAttack</button>
-                    <button class="game-info-btn">게임정보</button>
+    <!-- <div class="psa_container">
+        <main class="psa_main">
+            <h2 class="psa_main_title">History List</h2>
+            <div id="currentPlayer">현재 플레이어: user1</div>
+            <div class="psa_game_list">
+                <div class="psa_game_item" id="game_1">
+                    <div class="psa_game_info">
+                        1 - user1 VS user2
+                        <form action="#" method="post">
+                            <button type="submit" class="psa_btn_cancel">게임 취소</button>
+                        </form>
+                        <div class="psa_game_result">결과: 진행중</div>
+                    </div>
+                    <button class="psa_btn_info" onclick="getGameInfo(1)">게임정보</button>
                 </div>
                 <div class="history-item">
                     <div class="history-info">5 - user1 VS user2</div>
@@ -45,9 +53,49 @@
                 </div>
             </div>
         </main>
+    </div> -->
+    <div class="psa_container">
+        <div>{{ user.username }}</div>
+        <hr />
+        <div class="flex_box">
+            {% for game, attacker_name, defender_name in game_list_name %}
+            <article>
+                <div>
+                    <span>{{game.id}}</span> - {{game.attackerId}} VS {{game.defenderId}}
+                </div>
+                <div>
+                    <!-- 공격자가 로그인한 사람이고, status가 진행중(0) 이라면 -->
+                    {% if attacker_name == user.username and not game.status %}
+                    <div>진행중</div>
+                    {% elif defender_name == user.username and not game.status %}
+                    <div><a href="{% url 'game:counter' game.id %}">반격하기</a></div>
+                    <!-- status가 게임 종료(1) 이라면 -->
+                    {% else %}
+                    <div>결과
+                        {% if game.winner == user.id %}
+                        승리
+                        {% else %}
+                        패배
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        <div>
+            {%comment%}
+            <a href="{% url 'game:gameinfo' game.id %}">게임정보</a>
+            {%endcomment%}
+        </div>
     </div>
+
+
+    <script>
+        function getGameInfo(gameId) {
+            alert("게임 정보: " + gameId);
+        }
+    </script>
 </body>
+{% endblock %}
 </html>
-
-
-
