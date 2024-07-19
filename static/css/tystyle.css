@@ -1,0 +1,74 @@
+body {
+    background-color: #5A639C;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.yty_main-box {
+    background-color: #E2BBE9;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow-y: auto;
+}
+
+h2 {
+    color: #6a4578;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0d4f5;
+}
+
+.yty_btn {
+    background-color: #6a4578;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+    text-decoration: none;
+}
+
+.yty_btn:hover {
+    background-color: #553960;
+}
+
+.yty_btn.selected {
+    background-color: #4a3154;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+#yty_card-selection,
+#yty_opponent-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#yty_game-result {
+    margin-bottom: 15px;
+}
