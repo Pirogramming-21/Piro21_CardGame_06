@@ -131,9 +131,7 @@ def counter(request, pk):
         game.save()  # 게임정보 저장
         game.attackerId.save()  # 공격자 점수 정보 저장
         game.defenderId.save()  # 반격자 점수 정보 저장
-        return redirect(f"../gameInfo/{game.id}")  # 게임 결과 화면으로 이동
-    context = {"game": game, "available_cards": available_cards}
-    return render(request, "attack2.html", context=context)
+        return redirect(f"/gameInfo/{pk}")  # 게임 결과 화면으로 이동
 
 
 def gameInfo(request, pk):
@@ -161,3 +159,9 @@ def gameInfo(request, pk):
             "user": user,
         }
     return render(request, "gameInfo.html", context)
+
+
+def ranking(request):
+    users = User.objects.all().order_by("-score")[:3]
+    context = {"users": users}
+    return render(request, "ranking.html", context)
