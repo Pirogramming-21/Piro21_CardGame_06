@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="yty_main-box">
+    <h2>게임 결과</h2>
+    <div id="yty_game-result">
+        {% if game_result %}
+            <p>결과: {{ game_result.result }}</p>
+            <p>내 카드: {{ game_result.my_card }}</p>
+            <p>상대방 카드: {{ game_result.opponent_card }}</p>
+            <p>점수 변동: {{ game_result.score_change }}</p>
+        {% else %}
+            <p>게임 결과를 불러올 수 없습니다.</p>
+        {% endif %}
+    </div>
+    <a href="{% url 'main_menu' %}" class="yty_btn">메인 메뉴로</a>
+</div>
+{% endblock %}

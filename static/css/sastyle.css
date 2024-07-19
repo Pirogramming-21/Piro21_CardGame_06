@@ -172,6 +172,7 @@ button:hover {
 
 .psa_btn:hover {
     background-color: #563a63;
+<<<<<<< HEAD:apps/game/static/css/style.css
 }
 
 
@@ -259,3 +260,6 @@ button:hover {
 .game-info-btn:hover {
     background-color: #5a369d;
 }
+=======
+}
+>>>>>>> origin/develop:static/css/sastyle.css
