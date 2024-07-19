@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+  <title>main</title>
+{% endblock %}
+
+{% block content %}
+   {% if logged_in %}
+      <div class="login_comment">{{user.name}}님이 로그인 중</div>
+      <div class="main_btn">
+         <button class="btn">Start</button>
+         <button class="btn" onclick="location.href='{% %}'">List</button>
+      </div>
+   {% else %}
+      <button class="btn">Start</button>
+   {% endif %}
+{% endblock %}
