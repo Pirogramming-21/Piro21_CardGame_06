@@ -59,6 +59,7 @@ input[type="password"] {
     align-items: center;
     margin-bottom: 15px;
 }
+
 #yty_opponent-buttons select {
     background-color: transparent;
     border: none;
@@ -83,8 +84,10 @@ input[type="password"] {
     color: #E2BBE9;
     font-size: 20px;
     font-weight: bold;
+    transition: transform 0.3s ease;
 }
 
 .card.selected {
     background-color: #4a3154;
+    transform: translateY(-10px);
 }

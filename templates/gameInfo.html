@@ -9,7 +9,7 @@
    <!-- 만약 이미 끝난 게임이라면 -->
    {% if game.status == 1 %}
    <div class="info_gamers">
-      <p>{{game.id}} - {{attacker}} VS {{defender}}</p>
+      <p>{{attacker}} VS {{defender}}</p>
    </div>
    <div class="info_rule">
       <p>{{game_rule}}</p>
@@ -38,7 +38,7 @@
    <!-- 만약 user가 게임 공격자라면 -->
    {% if game.attackerId.id == user.id %}
    <div class="info_gamers">
-      <p>{{game.id}} - {{attacker}} VS {{defender}}</p>
+      <p>{{attacker}} VS {{defender}}</p>
    </div>
    <div class="info_status">진행중..😑</div>
    <div class="info_cards">나: {{game.attackerCard}}</div>
